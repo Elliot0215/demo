@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserMapper">
+    <resultMap id="UserInfoMap" type="com.example.demo.domain.UserInfo">
+        <id column="pid" property="pid"/>
+        <result column="pname" property="pname"/>
+        <result column="age" property="age"/>
+        <result column="job" property="job"/>
+    </resultMap>
+    <sql id="Base_Column">
+        pid,pname,age,job
+    </sql>
+    <select id="getById" resultMap="UserInfoMap">
+        select
+        <include refid="Base_Column"/>
+        from person
+        where pid=#{pid};
+    </select>
+</mapper>
